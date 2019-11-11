@@ -19,7 +19,6 @@ package com.example.bot.spring.echo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.fasterxml.jackson.databind.ser.std.AsArraySerializerBase;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
@@ -33,7 +32,7 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 public class EchoApplication {
     private static final String reply = "はい";
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication.run(EchoApplication.class, args);
     }
 
@@ -41,9 +40,6 @@ public class EchoApplication {
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
         String originalMessageText = event.getMessage().getText();
-        if (reply.equals(originalMessageText)) {
-             originalMessageText = "承知いたしました";
-        }
         return new TextMessage(originalMessageText);
     }
 

@@ -37,8 +37,12 @@ public class EchoApplication {
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
-        final String originalMessageText = "a";
-        //event.getMessage().getText();
+        final String originalMessageText = event.getMessage().getText();
+        
+        if(originalMessageText.equals("はい") ){
+            originalMessageText = "承知いたしました";
+        }
+
         return new TextMessage(originalMessageText);
     }
 

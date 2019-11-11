@@ -40,6 +40,9 @@ public class EchoApplication {
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
         String originalMessageText = event.getMessage().getText();
+        if (reply.equals(originalMessageText)) {
+            originalMessageText = "承知いたしました";
+        }
         return new TextMessage(originalMessageText);
     }
 

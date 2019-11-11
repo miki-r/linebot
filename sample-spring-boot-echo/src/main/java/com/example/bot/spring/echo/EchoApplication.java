@@ -39,7 +39,7 @@ public class EchoApplication {
         System.out.println("event: " + event);
         String originalMessageText = event.getMessage().getText();
         
-        if(originalMessageText.equals("はい") ){
+        if (originalMessageText.equals("はい")) {
             originalMessageText = "承知いたしました";
         }
         

@@ -31,7 +31,9 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
-    public static void main(String[] args) {
+    private static final String reply = "はい";
+
+	public static void main(String[] args) {
         SpringApplication.run(EchoApplication.class, args);
     }
 
@@ -39,11 +41,9 @@ public class EchoApplication {
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
         String originalMessageText = event.getMessage().getText();
-        
-        if ("はい" == originalMessageText) {
-            originalMessageText = "承知いたしました";
+        if (reply.equals(originalMessageText)) {
+             originalMessageText = "承知いたしました";
         }
-        
         return new TextMessage(originalMessageText);
     }
 

@@ -38,7 +38,7 @@ public class EchoApplication {
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
         final String originalMessageText = "a";
-        		//event.getMessage().getText();
+        //event.getMessage().getText();
         return new TextMessage(originalMessageText);
     }
 

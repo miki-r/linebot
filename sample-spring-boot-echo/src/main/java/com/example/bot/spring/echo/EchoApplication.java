@@ -19,6 +19,7 @@ package com.example.bot.spring.echo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.fasterxml.jackson.databind.ser.std.AsArraySerializerBase;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
@@ -39,7 +40,7 @@ public class EchoApplication {
         System.out.println("event: " + event);
         String originalMessageText = event.getMessage().getText();
         
-        if ("はい".equals(originalMessageText)) {
+        if ("はい" == originalMessageText) {
             originalMessageText = "承知いたしました";
         }
         

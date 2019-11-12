@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - EchoApplication",
+            "request": "launch",
+            "mainClass": "com.example.bot.spring.echo.EchoApplication",
+            "projectName": "sample-spring-boot-echo"
+        }
+    ]
+}

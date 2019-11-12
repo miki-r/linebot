@@ -16,20 +16,35 @@
 
 package com.example.bot.spring.echo;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import com.linecorp.bot.client.LineMessagingClient;
+import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.action.MessageAction;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
+import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.template.ConfirmTemplate;
+import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
+    @Autowired
+    private LineMessagingClient lineMessagingClient;
+
     private static final String reply = "はい";
 
     public static void main(String[] args) {
@@ -40,14 +55,53 @@ public class EchoApplication {
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
         String originalMessageText = event.getMessage().getText();
+        String replyToken = event.getReplyToken();
+
         if (reply.equals(originalMessageText)) {
             originalMessageText = "承知いたしました";
         }
-        return new TextMessage(originalMessageText);
+
+        switch (originalMessageText) {
+            case "こんにちは": {
+                ConfirmTemplate confirmTemplate = new ConfirmTemplate(
+                        "こんにちは～！元気？",
+                        new MessageAction("元気！！", "元気！！"),
+                        new MessageAction("微妙", "微妙")
+                );
+
+                TemplateMessage templateMessage = new TemplateMessage("Confirm alt text", confirmTemplate);
+                this.reply(replyToken, templateMessage);
+            break;
+            }
+            case "元気！！": {
+                originalMessageText = "それはよかったね";
+                break;
+            }
+            case "微妙": {
+                originalMessageText = "あら・・・大丈夫？";
+                break;
+            }
+
+            return new TextMessage(originalMessageText);
+        }
     }
 
     @EventMapping
     public void handleDefaultMessageEvent(Event event) {
         System.out.println("event: " + event);
+    }
+
+    private void reply(@NonNull String replyToken, @NonNull Message message) {
+        reply(replyToken, Collections.singletonList(message));
+    }
+
+    private void reply(@NonNull String replyToken, @NonNull List<Message> messages) {
+        try {
+            BotApiResponse apiResponse = lineMessagingClient
+                    .replyMessage(new ReplyMessage(replyToken, messages))
+                    .get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

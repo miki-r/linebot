@@ -90,14 +90,10 @@ public class EchoApplication {
         System.out.println("event: " + event);
     }
 
-    private void reply(@NonNull String replyToken, @NonNull Message message) {
-        reply(replyToken, Collections.singletonList(message));
-    }
-
-    private void reply(@NonNull String replyToken, @NonNull List<Message> messages) {
+    private void reply(@NonNull String replyToken, TemplateMessage templateMessage) {
         try {
             BotApiResponse apiResponse = lineMessagingClient
-                    .replyMessage(new ReplyMessage(replyToken, messages))
+                    .replyMessage(new ReplyMessage(replyToken, templateMessage))
                     .get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);

@@ -16,6 +16,8 @@
 
 package com.example.bot.spring.echo;
 
+import java.util.concurrent.ExecutionException;
+
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -58,22 +60,25 @@ public class EchoApplication {
         }
 
         switch (originalMessageText) {
-        case "こんにちは": {
-            ConfirmTemplate confirmTemplate = new ConfirmTemplate("こんにちは～！元気？", new MessageAction("元気！！", "元気！！"),
-                    new MessageAction("微妙", "微妙"));
+            case "こんにちは": {
+                ConfirmTemplate confirmTemplate = new ConfirmTemplate(
+                        "こんにちは～！元気？",
+                        new MessageAction("元気！！", "元気！！"),
+                        new MessageAction("微妙", "微妙")
+                );
 
-            TemplateMessage templateMessage = new TemplateMessage("Confirm alt text", confirmTemplate);
-            this.reply(replyToken, templateMessage);
-            break;
-        }
-        case "元気！！": {
-            originalMessageText = "それはよかったね";
-            break;
-        }
-        case "微妙": {
-            originalMessageText = "あら・・・大丈夫？";
-            break;
-        }
+                TemplateMessage templateMessage = new TemplateMessage("Confirm alt text", confirmTemplate);
+                this.reply(replyToken, templateMessage);
+                break;
+            }
+            case "元気！！": {
+                originalMessageText = "それはよかったね";
+                break;
+            }
+            case "微妙": {
+                originalMessageText = "あら・・・大丈夫？";
+                break;
+            }
         }
         return new TextMessage(originalMessageText);
     }
@@ -83,13 +88,12 @@ public class EchoApplication {
         System.out.println("event: " + event);
     }
 
-    private void reply(@NonNull String replyToken, TemplateMessage templateMessage)
-            throws Exception {
+    private void reply(@NonNull String replyToken, TemplateMessage templateMessage) {
         try {
             BotApiResponse apiResponse = lineMessagingClient
                     .replyMessage(new ReplyMessage(replyToken, templateMessage))
                     .get();
-        } catch (Exception e) {
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
     }

@@ -81,9 +81,8 @@ public class EchoApplication {
                 originalMessageText = "あら・・・大丈夫？";
                 break;
             }
-
-            return new TextMessage(originalMessageText);
         }
+        return new TextMessage(originalMessageText);
     }
 
     @EventMapping

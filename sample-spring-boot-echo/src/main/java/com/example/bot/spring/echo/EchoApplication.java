@@ -71,7 +71,7 @@ public class EchoApplication {
 
                 TemplateMessage templateMessage = new TemplateMessage("Confirm alt text", confirmTemplate);
                 this.reply(replyToken, templateMessage);
-            break;
+                break;
             }
             case "元気！！": {
                 originalMessageText = "それはよかったね";

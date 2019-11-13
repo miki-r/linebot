@@ -88,12 +88,13 @@ public class EchoApplication {
         System.out.println("event: " + event);
     }
 
-    private void reply(@NonNull String replyToken, TemplateMessage templateMessage)
-            throws InterruptedException, ExecutionException {
-
+    private void reply(@NonNull String replyToken, TemplateMessage templateMessage) {
+        try {
             BotApiResponse apiResponse = lineMessagingClient
                     .replyMessage(new ReplyMessage(replyToken, templateMessage))
                     .get();
-
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

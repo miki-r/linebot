@@ -309,14 +309,13 @@ public class KitchenSinkController {
                         "My button sample",
                         "Hello, my button",
                         Arrays.asList(
-                                new URIAction("Go to line.me",
-                                              URI.create("https://line.me"), null),
-                                new PostbackAction("Say hello1",
+                                new URIAction("KPMG　フィンテック・イノベーション",
+                                              URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
+                                new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは"),
-                                new PostbackAction("言 hello2",
-                                                   "hello こんにちは",
+                                new PostbackAction("情報銀行とは？",
                                                    "hello こんにちは"),
-                                new MessageAction("Say message",
+                                new MessageAction("KPMGの強みは？",
                                                   "Rice=米")
                         ));
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);

@@ -299,66 +299,6 @@ public class KitchenSinkController {
 
         log.info("Got text message from replyToken:{}: text:{}", replyToken, text);
         switch (text) {
-            case "profile": {
-                log.info("Invoking 'profile' command: source:{}",
-                         event.getSource());
-                String userId = event.getSource().getUserId();
-                if (userId != null) {
-                    if (event.getSource() instanceof GroupSource) {
-                        lineMessagingClient
-                                .getGroupMemberProfile(((GroupSource) event.getSource()).getGroupId(), userId)
-                                .whenComplete((profile, throwable) -> {
-                                    if (throwable != null) {
-                                        this.replyText(replyToken, throwable.getMessage());
-                                        return;
-                                    }
-
-                                    this.reply(
-                                            replyToken,
-                                            Arrays.asList(new TextMessage("(from group)"),
-                                                          new TextMessage(
-                                                                  "Display name: " + profile.getDisplayName()),
-                                                          new ImageMessage(profile.getPictureUrl(),
-                                                                           profile.getPictureUrl()))
-                                    );
-                                });
-                    } else {
-                        lineMessagingClient
-                                .getProfile(userId)
-                                .whenComplete((profile, throwable) -> {
-                                    if (throwable != null) {
-                                        this.replyText(replyToken, throwable.getMessage());
-                                        return;
-                                    }
-
-                                    this.reply(
-                                            replyToken,
-                                            Arrays.asList(new TextMessage(
-                                                                  "Display name: " + profile.getDisplayName()),
-                                                          new TextMessage("Status message: "
-                                                                          + profile.getStatusMessage()))
-                                    );
-
-                                });
-                    }
-                } else {
-                    this.replyText(replyToken, "Bot can't use profile API without user ID");
-                }
-                break;
-            }
-            case "bye": {
-                Source source = event.getSource();
-                if (source instanceof GroupSource) {
-                    this.replyText(replyToken, "Leaving group");
-                    lineMessagingClient.leaveGroup(((GroupSource) source).getGroupId()).get();
-                } else if (source instanceof RoomSource) {
-                    this.replyText(replyToken, "Leaving room");
-                    lineMessagingClient.leaveRoom(((RoomSource) source).getRoomId()).get();
-                } else {
-                    this.replyText(replyToken, "Bot can't leave from 1:1 chat");
-                }
-                break;
-            }
             case "confirm": {
                 ConfirmTemplate confirmTemplate = new ConfirmTemplate(
                         "Do it?",
@@ -387,77 +327,6 @@ public class KitchenSinkController {
                                                   "Rice=米")
                         ));
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
-                this.reply(replyToken, templateMessage);
-                break;
-            }
-            case "carousel": {
-                URI imageUrl = createUri("/static/buttons/1040.jpg");
-                CarouselTemplate carouselTemplate = new CarouselTemplate(
-                        Arrays.asList(
-                                new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(
-                                        new URIAction("Go to line.me",
-                                                      URI.create("https://line.me"), null),
-                                        new URIAction("Go to line.me",
-                                                      URI.create("https://line.me"), null),
-                                        new PostbackAction("Say hello1",
-                                                           "hello こんにちは")
-                                )),
-                                new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(
-                                        new PostbackAction("言 hello2",
-                                                           "hello こんにちは",
-                                                           "hello こんにちは"),
-                                        new PostbackAction("言 hello2",
-                                                           "hello こんにちは",
-                                                           "hello こんにちは"),
-                                        new MessageAction("Say message",
-                                                          "Rice=米")
-                                )),
-                                new CarouselColumn(imageUrl, "Datetime Picker",
-                                                   "Please select a date, time or datetime", Arrays.asList(
-                                        new DatetimePickerAction("Datetime",
-                                                                 "action=sel",
-                                                                 "datetime",
-                                                                 "2017-06-18T06:15",
-                                                                 "2100-12-31T23:59",
-                                                                 "1900-01-01T00:00"),
-                                        new DatetimePickerAction("Date",
-                                                                 "action=sel&only=date",
-                                                                 "date",
-                                                                 "2017-06-18",
-                                                                 "2100-12-31",
-                                                                 "1900-01-01"),
-                                        new DatetimePickerAction("Time",
-                                                                 "action=sel&only=time",
-                                                                 "time",
-                                                                 "06:15",
-                                                                 "23:59",
-                                                                 "00:00")
-                                ))
-                        ));
-                TemplateMessage templateMessage = new TemplateMessage("Carousel alt text", carouselTemplate);
-                this.reply(replyToken, templateMessage);
-                break;
-            }
-            case "image_carousel": {
-                URI imageUrl = createUri("/static/buttons/1040.jpg");
-                ImageCarouselTemplate imageCarouselTemplate = new ImageCarouselTemplate(
-                        Arrays.asList(
-                                new ImageCarouselColumn(imageUrl,
-                                                        new URIAction("Goto line.me",
-                                                                      URI.create("https://line.me"), null)
-                                ),
-                                new ImageCarouselColumn(imageUrl,
-                                                        new MessageAction("Say message",
-                                                                          "Rice=米")
-                                ),
-                                new ImageCarouselColumn(imageUrl,
-                                                        new PostbackAction("言 hello2",
-                                                                           "hello こんにちは",
-                                                                           "hello こんにちは")
-                                )
-                        ));
-                TemplateMessage templateMessage = new TemplateMessage("ImageCarousel alt text",
-                                                                      imageCarouselTemplate);
                 this.reply(replyToken, templateMessage);
                 break;
             }
@@ -513,12 +382,6 @@ public class KitchenSinkController {
                                         new ImagemapArea(260, 600, 450, 86)
                                 )).collect(Collectors.toList()))
                         .build());
-                break;
-            case "flex":
-                this.reply(replyToken, new ExampleFlexMessageSupplier().get());
-                break;
-            case "quickreply":
-                this.reply(replyToken, new MessageWithQuickReplySupplier().get());
                 break;
             default:
                 log.info("Returns echo message {}: {}", replyToken, text);

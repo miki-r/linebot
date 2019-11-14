@@ -313,15 +313,13 @@ public class KitchenSinkController {
                                               URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
                                 new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは",
-                                                   "hello こんにちは",
-                                                   null),
+                                                   "hello こんにちは"),
                                 new PostbackAction("情報銀行とは？",
                                                    "",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new PostbackAction("KPMGの強みは？",
                                                    "null",
-                                                   "hello こんにちは",
-                                                    null)
+                                                   "hello こんにちは")
                                 /*
                                 new ButtonsTemplate(imageUrl,
                                                     "My button sample",

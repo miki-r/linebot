@@ -314,10 +314,19 @@ public class KitchenSinkController {
                                 new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは"),
                                 new PostbackAction("情報銀行とは？",
-                                                   "hello こんにちは"),
-                                new MessageAction("KPMGの強みは？",
-                                                  "Rice=米")
-                        ));
+                                                   "情報銀行は、個人データの本人関与の下で個人データの蓄積・管理・流通・活用するための仕組みで、情報銀行に蓄積された個人のデータや、企業が保有する産業データ等の取引を活性化させ、企業や分野を越えたデータ流通の基盤となることが期待されています。\n詳細はこちらをご参照ください。\nhttps://home.kpmg/jp/ja/home/media/press-releases/2019/06/information-bank.html"),
+                                new PostbackAction("KPMGの強みは？",
+                                                   "hello こんにちは")
+                                /*
+                                new ButtonsTemplate(imageUrl,
+                                                    "My button sample",
+                                                    "Hello, my button",
+                                                    Arrays.asList(
+                                                        new PostbackAction("KPMGの強みは？",
+                                                                           "hello こんにちは")
+                                                    )*/
+                                )
+                );
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
                 this.reply(replyToken, templateMessage);
                 break;

@@ -303,7 +303,7 @@ public class KitchenSinkController {
                 break;
             }
             case "buttons": {
-                URI imageUrl = createUri("/static/buttons/KPMG.jpg");
+                URI imageUrl = createUri("/static/buttons/KPMG.png");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
                         "My button sample",
@@ -314,7 +314,7 @@ public class KitchenSinkController {
                                 new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは"),
                                 new PostbackAction("情報銀行とは？",
-                                                   "情報銀行は、個人データの本人関与の下で個人データの蓄積・管理・流通・活用するための仕組みで、情報銀行に蓄積された個人のデータや、企業が保有する産業データ等の取引を活性化させ、企業や分野を越えたデータ流通の基盤となることが期待されています。"),
+                                                   "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new PostbackAction("KPMGの強みは？",
                                                    "hello こんにちは")
                                 /*

@@ -315,10 +315,10 @@ public class KitchenSinkController {
                                                    "hello こんにちは",
                                                    "hello こんにちは"),
                                 new PostbackAction("情報銀行とは？",
-                                                   "",
+                                                   "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new PostbackAction("KPMGの強みは？",
-                                                   "null",
+                                                   "hello こんにちは",
                                                    "hello こんにちは")
                                 /*
                                 new ButtonsTemplate(imageUrl,

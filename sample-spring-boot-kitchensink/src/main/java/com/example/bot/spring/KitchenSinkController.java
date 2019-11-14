@@ -319,7 +319,7 @@ public class KitchenSinkController {
                                                    "",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new PostbackAction("KPMGの強みは？",
-                                                    null,
+                                                   "null",
                                                    "hello こんにちは",
                                                     null)
                                 /*

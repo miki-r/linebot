@@ -290,7 +290,7 @@ public class KitchenSinkController {
             throws Exception {
         String text = content.getText();
         String reply = "はい";
-        String tellMeAboutKpmg = "はい";
+        String tellMeAboutKpmg = "KPMGの強みを教えてください";
 
         log.info("Got text message from replyToken:{}: text:{}", replyToken, text);
         switch (text) {
@@ -320,7 +320,7 @@ public class KitchenSinkController {
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new MessageAction("KPMGの強みは？",
-                                                  "")
+                                                  "KPMGの強みを教えてください")
                                 )
                 );
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);

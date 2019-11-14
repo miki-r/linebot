@@ -304,7 +304,7 @@ public class KitchenSinkController {
                 this.reply(replyToken, templateMessage);
                 break;
             }
-            case "reply": {
+            case reply: {
                 URI imageUrl = createUri("/static/buttons/KPMG.png");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
@@ -321,14 +321,29 @@ public class KitchenSinkController {
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new MessageAction("KPMGの強みは？",
                                                   "")
-                                /*
-                                new ButtonsTemplate(imageUrl,
-                                                    "My button sample",
-                                                    "Hello, my button",
-                                                    Arrays.asList(
-                                                        new PostbackAction("KPMGの強みは？",
-                                                                           "hello こんにちは")
-                                                    )*/
+                                )
+                );
+                TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
+                this.reply(replyToken, templateMessage);
+                break;
+            }
+            case tellMeAboutKpmg: {
+                URI imageUrl = createUri("/static/buttons/KPMG.png");
+                ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
+                        imageUrl,
+                        "My button sample",
+                        "Hello, my button",
+                        Arrays.asList(
+                                new URIAction("KPMG　フィンテック・イノベーション",
+                                              URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
+                                new PostbackAction("オープンイノベーションとは？",
+                                                   "hello こんにちは",
+                                                   "hello こんにちは"),
+                                new PostbackAction("情報銀行とは？",
+                                                   "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
+                                                   "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
+                                new MessageAction("KPMGの強みは？",
+                                                  "")
                                 )
                 );
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);

@@ -299,7 +299,7 @@ public class KitchenSinkController {
                     this.reply(
                             replyToken,
                             Arrays.asList(new TextMessage("(from group)"),
-                                          new TextMessage("Display name: " ))
+                                new TextMessage("Display name: "))
                             );
                 break;
             }

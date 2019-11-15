@@ -320,7 +320,7 @@ public class KitchenSinkController {
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new MessageAction("KPMGの強みは？",
-                                                  "KPMGの強みを教えてください")
+                                                  tellMeAboutKpmg)
                                 )
                 );
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
@@ -331,7 +331,7 @@ public class KitchenSinkController {
                 URI imageUrl = createUri("/static/buttons/KPMG.png");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
-                        "My button sample",
+                        "2222",
                         "Hello, my button",
                         Arrays.asList(
                                 new URIAction("KPMG　フィンテック・イノベーション",
@@ -343,7 +343,7 @@ public class KitchenSinkController {
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
                                 new MessageAction("KPMGの強みは？",
-                                                  "")
+                                                  "test")
                                 )
                 );
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);

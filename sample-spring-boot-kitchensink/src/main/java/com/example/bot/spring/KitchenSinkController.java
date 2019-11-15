@@ -329,13 +329,14 @@ public class KitchenSinkController {
             }
             case tellMeAboutKpmg: {
                 URI imageUrl = createUri("/static/buttons/KPMG4.png");
+                URI blockChainImageUrl = createUri("/static/buttons/BlockChain");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
                         "KPMGの強み",
                         "デジタルにおける豊富なサービスラインがあります",
                         Arrays.asList(
                                 new URIAction("ブロックチェーン",
-                                              URI.create(createUri("/static/buttons/BlockChain").getPath()), null),
+                                              URI.create(blockChainImageUrl.getPath()), null),
                                 new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは",
                                                    "hello こんにちは"),

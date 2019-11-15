@@ -311,9 +311,9 @@ public class KitchenSinkController {
                         "KPMG　フィンテック・イノベーション",
                         "AI・ブロックチェーン等の先端技術やデジタルの知見を活かして金融機関や金融分野に進出する企業を支援しています",
                         Arrays.asList(
-                                new URIAction("KPMGﾌｨﾝﾃｯｸｲﾉﾍﾞｰｼｮﾝについて",
+                                new URIAction("フィンテック・イノベーション",
                                               URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
-                                new PostbackAction("ｵｰﾌﾟﾝｲﾉﾍﾞｰｼｮﾝとは？",
+                                new PostbackAction("オープンイノベーションとは？",
                                                    "他社や大学、地方自治体等と連携して革新的なビジネスを生み出す取組です。",
                                                    "他社や大学、地方自治体等と連携して革新的なビジネスを生み出す取組です。"),
                                 new PostbackAction("情報銀行とは？",

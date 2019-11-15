@@ -332,10 +332,10 @@ public class KitchenSinkController {
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
                         "KPMGの強み",
-                        "Hello, my button",
+                        "デジタルにおける豊富なサービスラインがあります",
                         Arrays.asList(
-                                new URIAction("KPMG　フィンテック・イノベーション",
-                                              URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
+                                new URIAction("ブロックチェーン",
+                                              URI.create(createUri("/static/buttons/BlockChain").getPath()), null),
                                 new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは",
                                                    "hello こんにちは"),

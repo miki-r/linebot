@@ -290,16 +290,64 @@ public class KitchenSinkController {
         String text = content.getText();
         final String reply = "はい";
         final String tellMeAboutKpmg = "KPMGの強みを教えてください";
-        final String testText = "KPMG";
+        final String testText1 = "ブロックチェーンについて教えてください";
+        final String testText2 = "ブロックチェーンとは管理者不在の取引において信憑性のある取引を行うための技術です";
+        final String testText3 = "例えば何に使われますか？";
+        final String testText4 = "例えば国際送金への適用が有力視されています";
+        final String testText5 = "それは何故ですか？";
+        final String testText6 = "管理者不在のため仲介手数料の削減が見込めるからです";
+        final String testText7 = "ありがとうございます。";
+        final String testText8 = "他に聞きたいことはありますか？";
+        final String testText9 = "ブロックチェーン以外にKPMGはほかにどのようなことができますか？";
+        final String testText10 = "情報銀行の設立支援などのサービスラインがあります";
+        final String testText11 = "情報銀行とは何ですか？";
+        final String testText12 = "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです";
+        final String testText13 = "他にはどのようなことができますか？";
+
+        final URI blockChainImageUrl = createUri("/static/buttons/BlockChain.jpg");
 
         log.info("Got text message from replyToken:{}: text:{}", replyToken, text);
         switch (text) {
-            case "testText": {
+            case testText1: {
                     this.reply(
                             replyToken,
-                            Arrays.asList(new TextMessage("(from group)"),
-                                new TextMessage("Display name: "))
-                            );
+                            Arrays.asList(new TextMessage(testText2))
+                    );
+                break;
+            }
+            case testText3: {
+                this.reply(
+                        replyToken,
+                        Arrays.asList(new TextMessage(testText4))
+                );
+                break;
+            }
+            case testText5: {
+                this.reply(
+                        replyToken,
+                        Arrays.asList(new TextMessage(testText6))
+                );
+                break;
+            }
+            case testText7: {
+                this.reply(
+                        replyToken,
+                        Arrays.asList(new TextMessage(testText8))
+                );
+                break;
+            }
+            case testText9: {
+                this.reply(
+                        replyToken,
+                        Arrays.asList(new TextMessage(testText10))
+                );
+                break;
+            }
+            case testText11: {
+                this.reply(
+                        replyToken,
+                        Arrays.asList(new TextMessage(testText12))
+                );
                 break;
             }
             case reply: {
@@ -325,9 +373,9 @@ public class KitchenSinkController {
                 this.reply(replyToken, templateMessage);
                 break;
             }
+            case testText13:
             case tellMeAboutKpmg: {
                 URI imageUrl = createUri("/static/buttons/KPMG4.png");
-                URI blockChainImageUrl = createUri("/static/buttons/BlockChain.jpg");
                 URI pymentImageUrl = createUri("/static/buttons/Pyment.jpg");
                 URI dxImageUrl = createUri("/static/buttons/DX.jpg");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(

@@ -60,6 +60,7 @@ import com.linecorp.bot.model.event.message.LocationMessageContent;
 import com.linecorp.bot.model.event.message.StickerMessageContent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.message.VideoMessageContent;
+import com.linecorp.bot.model.event.source.GroupSource;
 import com.linecorp.bot.model.event.source.Source;
 import com.linecorp.bot.model.message.AudioMessage;
 import com.linecorp.bot.model.message.ImageMessage;
@@ -294,14 +295,51 @@ public class KitchenSinkController {
 
         log.info("Got text message from replyToken:{}: text:{}", replyToken, text);
         switch (text) {
-            case "confirm": {
-                ConfirmTemplate confirmTemplate = new ConfirmTemplate(
-                        "Do it?",
-                        new MessageAction("Yes", "Yes!"),
-                        new MessageAction("No", "No!")
-                );
-                TemplateMessage templateMessage = new TemplateMessage("Confirm alt text", confirmTemplate);
-                this.reply(replyToken, templateMessage);
+            case "profile": {
+                log.info("Invoking 'profile' command: source:{}",
+                         event.getSource());
+                String userId = event.getSource().getUserId();
+                if (userId != null) {
+                    if (event.getSource() instanceof GroupSource) {
+                        lineMessagingClient
+                                .getGroupMemberProfile(((GroupSource) event.getSource()).getGroupId(), userId)
+                                .whenComplete((profile, throwable) -> {
+                                    if (throwable != null) {
+                                        this.replyText(replyToken, throwable.getMessage());
+                                        return;
+                                    }
+
+                                    this.reply(
+                                            replyToken,
+                                            Arrays.asList(new TextMessage("(from group)"),
+                                                          new TextMessage(
+                                                                  "Display name: " + profile.getDisplayName()),
+                                                          new ImageMessage(profile.getPictureUrl(),
+                                                                           profile.getPictureUrl()))
+                                    );
+                                });
+                    } else {
+                        lineMessagingClient
+                                .getProfile(userId)
+                                .whenComplete((profile, throwable) -> {
+                                    if (throwable != null) {
+                                        this.replyText(replyToken, throwable.getMessage());
+                                        return;
+                                    }
+
+                                    this.reply(
+                                            replyToken,
+                                            Arrays.asList(new TextMessage(
+                                                                  "Display name: " + profile.getDisplayName()),
+                                                          new TextMessage("Status message: "
+                                                                          + profile.getStatusMessage()))
+                                    );
+
+                                });
+                    }
+                } else {
+                    this.replyText(replyToken, "Bot can't use profile API without user ID");
+                }
                 break;
             }
             case reply: {

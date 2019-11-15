@@ -336,7 +336,7 @@ public class KitchenSinkController {
                         "デジタルにおける豊富なサービスラインがあります",
                         Arrays.asList(
                                 new URIAction("ブロックチェーン",
-                                              URI.create(blockChainImageUrl.getPath()), null),
+                                              URI.create(imageUrl.getPath()), null),
                                 new PostbackAction("オープンイノベーションとは？",
                                                    "hello こんにちは",
                                                    "hello こんにちは"),

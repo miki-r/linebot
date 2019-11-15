@@ -291,54 +291,16 @@ public class KitchenSinkController {
         String text = content.getText();
         final String reply = "はい";
         final String tellMeAboutKpmg = "KPMGの強みを教えてください";
+        final String testText = "KPMG";
 
         log.info("Got text message from replyToken:{}: text:{}", replyToken, text);
         switch (text) {
-            case "profile": {
-                log.info("Invoking 'profile' command: source:{}",
-                         event.getSource());
-                String userId = event.getSource().getUserId();
-                if (userId != null) {
-                    if (event.getSource() instanceof GroupSource) {
-                        lineMessagingClient
-                                .getGroupMemberProfile(((GroupSource) event.getSource()).getGroupId(), userId)
-                                .whenComplete((profile, throwable) -> {
-                                    if (throwable != null) {
-                                        this.replyText(replyToken, throwable.getMessage());
-                                        return;
-                                    }
-
-                                    this.reply(
-                                            replyToken,
-                                            Arrays.asList(new TextMessage("(from group)"),
-                                                          new TextMessage(
-                                                                  "Display name: " + profile.getDisplayName()),
-                                                          new ImageMessage(profile.getPictureUrl(),
-                                                                           profile.getPictureUrl()))
-                                    );
-                                });
-                    } else {
-                        lineMessagingClient
-                                .getProfile(userId)
-                                .whenComplete((profile, throwable) -> {
-                                    if (throwable != null) {
-                                        this.replyText(replyToken, throwable.getMessage());
-                                        return;
-                                    }
-
-                                    this.reply(
-                                            replyToken,
-                                            Arrays.asList(new TextMessage(
-                                                                  "Display name: " + profile.getDisplayName()),
-                                                          new TextMessage("Status message: "
-                                                                          + profile.getStatusMessage()))
-                                    );
-
-                                });
-                    }
-                } else {
-                    this.replyText(replyToken, "Bot can't use profile API without user ID");
-                }
+            case "testText": {
+                    this.reply(
+                            replyToken,
+                            Arrays.asList(new TextMessage("(from group)"),
+                                          new TextMessage("Display name: " ))
+                            );
                 break;
             }
             case reply: {

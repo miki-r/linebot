@@ -309,7 +309,7 @@ public class KitchenSinkController {
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
                         "KPMG　フィンテック・イノベーション",
-                        "AI・ブロックチェーン等の先端技術やデジタルの知見を活かして金融機関や金融分野に進出する企業を支援しています",
+                        "AI・RPA等の先端技術やデジタルの知見を活かして金融機関や金融分野に進出する企業を支援しています",
                         Arrays.asList(
                                 new URIAction("フィンテック・イノベーション",
                                               URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
@@ -330,21 +330,19 @@ public class KitchenSinkController {
             case tellMeAboutKpmg: {
                 URI imageUrl = createUri("/static/buttons/KPMG4.png");
                 URI blockChainImageUrl = createUri("/static/buttons/BlockChain.jpg");
+                URI pymentImageUrl = createUri("/static/buttons/Pyment.jpg");
+                URI dxImageUrl = createUri("/static/buttons/DX.jpg");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
                         "KPMGの強み",
-                        "デジタルにおける豊富なサービスラインがあります",
+                        "デジタルにおける豊富な実績に基づくサービスラインがあります",
                         Arrays.asList(
                                 new URIAction("ブロックチェーン",
                                                     blockChainImageUrl, null),
-                                new PostbackAction("オープンイノベーションとは？",
-                                                   "hello こんにちは",
-                                                   "hello こんにちは"),
-                                new PostbackAction("情報銀行とは？",
-                                                   "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
-                                                   "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
-                                new MessageAction("KPMGの強みは？",
-                                                  "test")
+                                new URIAction("ペイメント",
+                                                    pymentImageUrl, null),
+                                new URIAction("デジタルトランスフォーメーション",
+                                                    dxImageUrl, null)
                                 )
                 );
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);

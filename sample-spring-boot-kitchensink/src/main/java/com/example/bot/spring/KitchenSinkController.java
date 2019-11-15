@@ -295,7 +295,7 @@ public class KitchenSinkController {
         final String testText3 = "例えば何に使われますか？";
         final String testText4 = "例えば国際送金への適用が有力視されています";
         final String testText5 = "それは何故ですか？";
-        final String testText6 = "管理者不在のため仲介手数料の削減が見込めるからです";
+        final String testText6 = "管理者不在のため仲介手数料の削減に寄与できるためです";
         final String testText7 = "ありがとうございます。";
         final String testText8 = "他に聞きたいことはありますか？";
         final String testText9 = "ブロックチェーン以外にKPMGはほかにどのようなことができますか？";

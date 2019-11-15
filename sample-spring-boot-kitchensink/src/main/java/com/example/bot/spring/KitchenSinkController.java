@@ -305,17 +305,17 @@ public class KitchenSinkController {
                 break;
             }
             case reply: {
-                URI imageUrl = createUri("/static/buttons/KPMG.png");
+                URI imageUrl = createUri("/static/buttons/KPMG2.png");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
-                        "My button sample",
-                        "Hello, my button",
+                        "KPMG　フィンテック・イノベーション",
+                        "AI・ブロックチェーン等の先端技術やデジタルの知見を活かして金融機関や金融分野に進出する企業を支援しています",
                         Arrays.asList(
                                 new URIAction("KPMG　フィンテック・イノベーション",
                                               URI.create("https://assets.kpmg/content/dam/kpmg/jp/pdf/2019/jp-fintech-support-service.pdf"), null),
                                 new PostbackAction("オープンイノベーションとは？",
-                                                   "hello",
-                                                   "hello こんにちは"),
+                                                   "他社や大学、地方自治体等と連携して革新的なビジネスを生み出す取組です。",
+                                                   "他社や大学、地方自治体等と連携して革新的なビジネスを生み出す取組です。"),
                                 new PostbackAction("情報銀行とは？",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。",
                                                    "情報銀行とは、本人が情報銀行に個人データを預け、企業が活用することで利益が発生する仕組みです。"),
@@ -328,7 +328,7 @@ public class KitchenSinkController {
                 break;
             }
             case tellMeAboutKpmg: {
-                URI imageUrl = createUri("/static/buttons/KPMG.png");
+                URI imageUrl = createUri("/static/buttons/KPMG2.png");
                 ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                         imageUrl,
                         "2222",
